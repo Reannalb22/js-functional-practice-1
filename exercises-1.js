@@ -5,12 +5,11 @@
 // ----------------------------
 
 var forEach = function(array, callback){
-    var newArray = [];
+    // var newArray = [];
     for(var i=0; i < array.length; i++){
-    	var newElement = callback(array[i]);
-    	newArray.push(newElement);
+    	var element = array[i]
+    	callback(element)
     }
-    return newArray;
 };
 
 // tests
@@ -25,19 +24,22 @@ console.assert(total === 24)
 // ----------------------------
 
 var reduce = function(array, callback){
-	var result; 
-	forEach(array, function(element){
-		result = callback(result, element);
-	});
+	var result = array[0]
+	var newArray = array.slice(1)
+	forEach(newArray, function(el) {	
+		result = callback(el, result)
+
+	})
 
 	return result;
 }
 
 
+
 // tests
 // ---
 console.assert(
-    reduce([1, 2, 3, 4], function(a, v){ return a*v }) === 24
+    reduce([1, 2, 3, 4], function(a, tot){ return a*tot }) === 24
 )
 
 // ----------------------------
@@ -67,8 +69,14 @@ console.assert(squares[3] === 16)
 // ----------------------------
 
 function filter(array, callback){
-    
-}
+    var accepted = [];
+    for (var i = 0; i < array.length; i++){
+    	if (callback(array[i]))
+    		accepted.push(array[i]);
+    }
+     return accepted;
+    }
+
 
 // tests
 // ---
@@ -83,7 +91,7 @@ console.assert(evens[1] === 4)
 // ----------------------------
 
 // function sum(){
-    // YOUR CODE HERE
+//     YOUR CODE HERE
 // }
 
 // tests
@@ -104,7 +112,7 @@ console.assert(evens[1] === 4)
 // ]
 
 // names.sort(function(a, b){
-    // YOUR CODE HERE
+//     YOUR CODE HERE
 // })
 
 // tests
@@ -130,14 +138,14 @@ console.assert(evens[1] === 4)
 
 // var results = customers
 //     .filter(function(){
-        // YOUR CODE HERE
-    // })
-    // .map(function(){
-        // YOUR CODE HERE
-    // })
-    // .sort(function(){
-        // YOUR CODE HERE
-    // })
+//         YOUR CODE HERE
+//     })
+//     .map(function(){
+//         YOUR CODE HERE
+//     })
+//     .sort(function(){
+//         YOUR CODE HERE
+//     })
 
 // tests
 // ---
